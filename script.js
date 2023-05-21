@@ -4,3 +4,10 @@ const cities=[];
 fetch(endpoint)
 .then(response => response.json())
 .then(data => cities.push(...data));
+
+function findMatches(wordToMatch, cities) {
+    return cities.filter(place => {
+      const regex = new RegExp(wordToMatch, 'gi');
+      return place.city.match(regex) || place.state.match(regex)
+    });
+  }
